@@ -1,0 +1,43 @@
+{
+  "name": "pharrell",
+  "version": "0.1.0",
+  "description": "Pharell CRUDL API framework",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "babel-tap test/functional/index.js",
+    "lint": "eslint benchmarks example lib test index.js",
+    "clean": "rimraf dist",
+    "build": "npm run clean && babel index.js -d dist && babel lib -d dist/lib",
+    "bench": "npm run build && babel benchmarks -d dist/benchmarks && make -C benchmarks",
+    "prepublish": "npm run build"
+  },
+  "repository": "aiir/pharrell",
+  "keywords": [
+    "app",
+    "application",
+    "crud",
+    "crudl",
+    "framework",
+    "http",
+    "lambda",
+    "koa",
+    "serverless",
+    "web"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "aws-serverless-express": "^3.1.3",
+    "koa": "^2.5.0",
+    "koa-bodyparser": "^4.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-tap": "^5.0.0",
+    "eslint": "^4.19.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "rimraf": "^2.6.2",
+    "supertest": "^3.0.0"
+  }
+}
