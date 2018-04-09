@@ -1,6 +1,6 @@
 {
   "name": "pharrell",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Pharell CRUDL API framework",
   "main": "./dist/index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "clean": "rimraf dist",
     "build": "npm run clean && babel index.js -d dist && babel lib -d dist/lib",
     "bench": "npm run build && babel benchmarks -d dist/benchmarks && make -C benchmarks",
-    "prepublish": "npm run build"
+    "prepublishOnly": "npm run build"
   },
   "repository": "aiir/pharrell",
   "keywords": [

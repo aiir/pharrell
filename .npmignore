@@ -1,4 +1,7 @@
-benchmarks
-example
-lib
-test
+/benchmarks
+/example
+/lib
+/test
+/.babelrc
+/.eslintrc
+/index.js
