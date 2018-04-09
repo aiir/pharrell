@@ -1,3 +1,5 @@
+<img src="logo.svg" style="width:100%;max-width:500px;">
+
 # Pharrell
 
 *Because it's API'y*
@@ -63,6 +65,11 @@ app.mount(endpoint);
 
 exports.handler = app.handler();
 ```
+
+## Authors
+
+- Created by [@andybee](https://twitter.com/andybee)
+- Logo by [@JonathanEx](https://twitter.com/JonathanEx)
 
 ## License
 
