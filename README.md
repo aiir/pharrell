@@ -23,7 +23,7 @@ import { Endpoint, ListResult, Pharrell } from '..';
 
 class ExampleEndpoint extends Endpoint {
   constructor() {
-    super('rooms-without-roofs');
+    super('minion');
   }
 
   async lookup(id) {
