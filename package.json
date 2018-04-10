@@ -1,6 +1,6 @@
 {
   "name": "pharrell",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Pharell CRUDL API framework",
   "main": "./dist/index.js",
   "scripts": {
