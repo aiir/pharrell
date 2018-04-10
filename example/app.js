@@ -21,6 +21,12 @@ class Store {
       .filter(resource => // eslint-disable-next-line no-underscore-dangle
         Object.keys(options).some(key => (resource._links[key].href === options[key])));
   }
+
+  create(params) {
+    const response = Object.assign({}, params);
+    response.id = 125;
+    return response;
+  }
 }
 
 class HotelEndpoint extends Endpoint {
@@ -44,8 +50,7 @@ class HotelEndpoint extends Endpoint {
   }
 
   async create(params) { // eslint-disable-line class-methods-use-this
-    const hotel = Object.assign({}, params);
-    hotel.id = 125;
+    const hotel = this.store.create(params);
     return hotel;
   }
 
