@@ -85,6 +85,15 @@ tap.test('/', (parentTest) => {
       });
   });
 
+  parentTest.test('middleware', (test) => {
+    request.get('/')
+      .end((error, response) => {
+        test.error(error);
+        test.same(response.headers['x-app'], 'Example');
+        test.end();
+      });
+  });
+
   parentTest.end();
 });
 
@@ -472,6 +481,15 @@ tap.test('/photos', (parentTest) => {
       .end((error, response) => {
         test.error(error);
         test.same(response.body, { photos: 'Method not allowed' });
+        test.end();
+      });
+  });
+
+  parentTest.test('middleware', (test) => {
+    request.get(route)
+      .end((error, response) => {
+        test.error(error);
+        test.same(response.headers['x-endpoint'], 'Photo');
         test.end();
       });
   });

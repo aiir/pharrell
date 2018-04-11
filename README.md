@@ -26,6 +26,10 @@ import { Endpoint, ListResult, Pharrell } from '..';
 class ExampleEndpoint extends Endpoint {
   constructor() {
     super('minion');
+    this.use((context, next) => {
+      context.set('X-Endpoint', 'Minion');
+      await next();
+    });
   }
 
   async lookup(id) {
@@ -45,6 +49,10 @@ class ExampleEndpoint extends Endpoint {
 const app = new Pharrell();
 const endpoint = new ExampleEndpoint();
 app.mount(endpoint);
+app.use((context, next) => {
+  context.set('X-App', 'My App');
+  await next();
+});
 app.listen(3000);
 ```
 

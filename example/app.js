@@ -80,6 +80,10 @@ class HotelEndpoint extends Endpoint {
 class PhotoEndpoint extends Endpoint {
   constructor() {
     super('photo', { validListQueryParams: ['default'] });
+    this.use(async (context, next) => {
+      context.set('X-Endpoint', 'Photo');
+      await next();
+    });
     this.store = new Store({
       1: {
         id: 1,
@@ -133,5 +137,9 @@ const endpoint = new HotelEndpoint();
 const childEndpoint = new PhotoEndpoint();
 app.mount(endpoint.mount(childEndpoint));
 app.mount(childEndpoint);
+app.use(async (context, next) => {
+  context.set('X-App', 'Example');
+  await next();
+});
 
 export default app;
