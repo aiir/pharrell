@@ -48,12 +48,13 @@ class ExampleEndpoint extends Endpoint {
 
 const app = new Pharrell();
 const endpoint = new ExampleEndpoint();
-app.mount(endpoint);
-app.use((context, next) => {
-  context.set('X-App', 'My App');
-  await next();
-});
-app.listen(3000);
+app
+  .mount(endpoint)
+  .use((context, next) => {
+    context.set('X-App', 'My App');
+    await next();
+  })
+  .listen(3000);
 ```
 
 ## Endpoints

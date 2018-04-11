@@ -135,11 +135,12 @@ class PhotoEndpoint extends Endpoint {
 const app = new Pharrell();
 const endpoint = new HotelEndpoint();
 const childEndpoint = new PhotoEndpoint();
-app.mount(endpoint.mount(childEndpoint));
-app.mount(childEndpoint);
-app.use(async (context, next) => {
-  context.set('X-App', 'Example');
-  await next();
-});
+app
+  .mount(endpoint.mount(childEndpoint))
+  .mount(childEndpoint)
+  .use(async (context, next) => {
+    context.set('X-App', 'Example');
+    await next();
+  });
 
 export default app;
