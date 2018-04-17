@@ -132,12 +132,23 @@ class PhotoEndpoint extends Endpoint {
   }
 }
 
+class ErrorEndpoint extends Endpoint {
+  constructor() {
+    super('error');
+  }
+
+  async list() {
+    this.constructor.throw(403, 'Forbidden');
+  }
+}
+
 const app = new Pharrell();
 const endpoint = new HotelEndpoint();
 const childEndpoint = new PhotoEndpoint();
 app
   .mount(endpoint.mount(childEndpoint))
   .mount(childEndpoint)
+  .mount(new ErrorEndpoint())
   .use(async (context, next) => {
     context.set('X-App', 'Example');
     await next();

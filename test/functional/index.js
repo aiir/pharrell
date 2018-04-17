@@ -49,6 +49,13 @@ tap.test('/', (parentTest) => {
               href: '/photos/{id}',
               templated: true,
             },
+            error: {
+              href: '/errors/{id}',
+              templated: true,
+            },
+            errors: {
+              href: '/errors',
+            },
           },
         });
         test.end();
@@ -591,6 +598,22 @@ tap.test('Unknown route', (parentTest) => {
       .end((error, response) => {
         test.error(error);
         test.same(response.body, { general: 'Not found' });
+        test.end();
+      });
+  });
+
+  parentTest.end();
+});
+
+tap.test('/error', (parentTest) => {
+  const route = '/errors';
+
+  parentTest.test('GET', (test) => {
+    request.get(route)
+      .expect(403)
+      .end((error, response) => {
+        test.error(error);
+        test.same(response.body, { general: 'Forbidden' });
         test.end();
       });
   });
