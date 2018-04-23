@@ -132,6 +132,17 @@ class PhotoEndpoint extends Endpoint {
   }
 }
 
+class LimitedEndpoint extends Endpoint {
+  constructor() {
+    super('limited');
+  }
+
+  async lookup(id) {
+    const result = { id };
+    return result;
+  }
+}
+
 class ErrorEndpoint extends Endpoint {
   constructor() {
     super('error');
@@ -148,6 +159,7 @@ const childEndpoint = new PhotoEndpoint();
 app
   .mount(endpoint.mount(childEndpoint))
   .mount(childEndpoint)
+  .mount(new LimitedEndpoint())
   .mount(new ErrorEndpoint())
   .use(async (context, next) => {
     context.set('X-App', 'Example');

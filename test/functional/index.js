@@ -49,6 +49,10 @@ tap.test('/', (parentTest) => {
               href: '/photos/{id}',
               templated: true,
             },
+            limited: {
+              href: '/limiteds/{id}',
+              templated: true,
+            },
             error: {
               href: '/errors/{id}',
               templated: true,
@@ -582,6 +586,22 @@ tap.test('/photos/{id}', (parentTest) => {
       .end((error, response) => {
         test.error(error);
         test.same(response.body, { photo: 'Method not allowed' });
+        test.end();
+      });
+  });
+
+  parentTest.end();
+});
+
+tap.test('/limiteds', (parentTest) => {
+  const { name: route } = parentTest;
+
+  parentTest.test('GET', (test) => {
+    request.get(route)
+      .expect(405)
+      .end((error, response) => {
+        test.error(error);
+        test.same(response.body, { limiteds: 'Method not allowed' });
         test.end();
       });
   });
